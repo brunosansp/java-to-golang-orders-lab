@@ -18,6 +18,23 @@ Arquitetura (alto nível):
 - Java 21 instalado (ou compatível com os builds Java 21).
 - Go 1.22+ instalado (ou versão recente equivalente).
 
+## Diagrama de Contexto
+```mermaid
+C4Context
+title System context - Order Processing
+
+Person(customer, "Customer", "User placing orders")
+System_Boundary(sys, "Order Processing System") {
+  System(webapp, "Order API", "Receives HTTP requests to create and query orders")
+  System(queue, "Message Broker", "Stores order events for async processing")
+  System(worker, "Order Processor", "Consumes order events and processes them")
+}
+
+Rel(customer, webapp, "Places orders via HTTP/JSON")
+Rel(webapp, queue, "Publishes order events")
+Rel(worker, queue, "Consumes and processes order events")
+```
+
 ## Diagramas de Classes
 #### Java
 ```mermaid
