@@ -1,3 +1,17 @@
 spring:
   application:
     name: order-api
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    br.com.brunosansp.order: DEBUG
